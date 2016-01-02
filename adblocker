@@ -25,6 +25,10 @@ busybox mount -o remount,rw rootfs 2>/dev/null
 busybox mount -o remount,rw /system 2>/dev/null
 busybox mount -o remount,rw /system /system 2>/dev/null
 
+if [ ! -d "/sqlite_stmt_journals" ]; then 
+  busybox mkdir -p /sqlite_stmt_journals; 
+fi
+
 busybox clear
 
 if [ -f /system/etc/hosts ]; then
@@ -48,7 +52,6 @@ fi
    Please select an option: "
 	read -r option
 	if [ "$option" -eq 1 ]; then
-	
 		mount -o remount,rw / 2>/dev/null
 		mount -o remount,rw / / 2>/dev/null
 		mount -o remount,rw rootfs 2>/dev/null
